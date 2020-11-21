@@ -13,17 +13,56 @@ npm install --save react-google-translate
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import MyComponent from 'react-google-translate'
-import 'react-google-translate/dist/index.css'
+import { useLazyTranslate } from 'react-google-translate'
 
-class Example extends Component {
+const Example = () => {
+
+  const [text] = useState('test');
+  const [language] = useState('zh-CN');
+
+  const [translate, { data, loading }] = useLazyTranslate({
+    language
+  })
+
+  useEffect(() => {
+    if (text) {
+      translate(text, language);
+    }
+  }, [translate, text])
+
   render() {
-    return <MyComponent />
+    return (
+      <div>{loading ? 'Loading...' : data}</div>
+    )
   }
 }
 ```
+
+## Props
+
+### `language`: string | string[]
+
+Set the default language for the translation.
+
+## API
+
+### `translate`: func
+
+Calls the api to translate the given text and language.
+
+### `loading`: boolean
+
+Indicates that loading state.
+
+### `data`: string | string[]
+
+Translated text received from the hook.
+
+### `called`: boolean
+
+Indicates that hook has been triggered.
 
 ## License
 
