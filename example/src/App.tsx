@@ -46,9 +46,10 @@ const App = () => {
             <Row>
               <Col>
                 <FormGroup>
-                  <Label>From</Label>
+                  <Label>Text to translate</Label>
                   <Input
-                    placeholder={searchedText || 'Enter a text'}
+                    placeholder="Enter a text"
+                    value={searchedText}
                     onChange={(e) => debouncedSearch(e.target.value)}
                   />
                 </FormGroup>
