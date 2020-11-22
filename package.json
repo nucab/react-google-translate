@@ -1,6 +1,6 @@
 {
   "name": "react-google-translate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Useful hook for Google Translate API.",
   "author": "noahjohn9259",
   "license": "MIT",
