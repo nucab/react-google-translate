@@ -48,8 +48,8 @@ const App = () => {
                 <FormGroup>
                   <Label>Text to translate</Label>
                   <Input
-                    placeholder="Enter a text"
-                    value={searchedText}
+                    placeholder='Enter a text'
+                    // value={searchedText}
                     onChange={(e) => debouncedSearch(e.target.value)}
                   />
                 </FormGroup>
