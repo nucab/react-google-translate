@@ -48,18 +48,20 @@ const App = () => {
                 <FormGroup>
                   <Label>From</Label>
                   <Input
-                    placeholder='Enter a text'
+                    placeholder={searchedText || 'Enter a text'}
                     onChange={(e) => debouncedSearch(e.target.value)}
                   />
                 </FormGroup>
               </Col>
               <Col>
                 <Label>To</Label>
-                  <Input
-                    readOnly
-                    value={loading ? 'Loading...' : (data || 'Please provide a text')}
-                    onChange={(e) => debouncedSearch(e.target.value)}
-                  />
+                <Input
+                  readOnly
+                  value={
+                    loading ? 'Loading...' : data || 'Please provide a text'
+                  }
+                  onChange={(e) => debouncedSearch(e.target.value)}
+                />
               </Col>
             </Row>
           </Form>
