@@ -10,6 +10,32 @@
 npm install --save react-google-translate @google-cloud/translate
 ```
 
+## Environment variables
+
+Generate your credentials and project id in Google Cloud Platform. Read through the [documentation](https://cloud.google.com/iam/docs/creating-managing-service-accounts) for setting a service account.
+
+After you acquired your credentials and project id, add it to your environment variables.
+
+```
+GCP_PRIVATE_KEY=[private_key]
+GCP_CLIENT_EMAIL=[client_email]
+GCP_PROJECT_ID=[project_id]
+```
+
+## Setting up the config
+
+In your index.js,
+
+```tsx
+import { setConfig } from 'react-google-translate'
+
+setConfig({
+  clientEmail: process.env.REACT_APP_GCP_CLIENT_EMAIL ?? '',
+  privateKey: process.env.REACT_APP_GCP_PRIVATE_KEY ?? '',
+  projectId: process.env.REACT_APP_GCP_PROJECT_ID ?? ''
+})
+```
+
 ## Usage
 
 ```tsx
@@ -45,18 +71,6 @@ const Example = () => {
 ### `language`: string | string[]
 
 Set the default language for the translation.
-
-## Environment variables
-
-Generate your credentials and project id in Google Cloud Platform. Read through the [documentation](https://cloud.google.com/iam/docs/creating-managing-service-accounts) for setting a service account.
-
-After you acquired your credentials and project id, add it to your environment variables.
-
-```
-GCP_PRIVATE_KEY=[private_key]
-GCP_CLIENT_EMAIL=[client_email]
-GCP_PROJECT_ID=[project_id]
-```
 
 ## API
 

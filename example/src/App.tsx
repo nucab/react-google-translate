@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { useLazyTranslate, getLanguages } from 'react-google-translate'
+import {
+  useLazyTranslate,
+  getLanguages,
+  setConfig
+} from 'react-google-translate'
 import { Form, FormGroup, Label, Input, Col, Row, Jumbotron } from 'reactstrap'
 import { debounce } from 'lodash'
+
+setConfig({
+  clientEmail: process.env.REACT_APP_GCP_CLIENT_EMAIL ?? '',
+  privateKey: process.env.REACT_APP_GCP_PRIVATE_KEY ?? '',
+  projectId: process.env.REACT_APP_GCP_PROJECT_ID ?? ''
+})
 
 const App = () => {
   const [language, setLanguage] = useState('zh')
@@ -49,13 +59,13 @@ const App = () => {
                   <Label>Text to translate</Label>
                   <Input
                     placeholder='Enter a text'
-                    // value={searchedText}
+                    defaultValue={searchedText}
                     onChange={(e) => debouncedSearch(e.target.value)}
                   />
                 </FormGroup>
               </Col>
               <Col>
-                <Label>To</Label>
+                <Label>Output</Label>
                 <Input
                   readOnly
                   value={

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { translateText, getSupportedLanguages } from './util'
+import { translateText } from './util'
 
 type Props = {
   text: string | Array<string>
@@ -65,4 +65,4 @@ export const useTranslate = (props: Props): Result => {
   }
 }
 
-export const getLanguages = getSupportedLanguages
+export { getLanguages, setConfig } from './util'
