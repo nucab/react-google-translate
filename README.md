@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save react-google-translate
+npm install --save react-google-translate @google-cloud/translate
 ```
 
 ## Usage
@@ -45,6 +45,18 @@ const Example = () => {
 ### `language`: string | string[]
 
 Set the default language for the translation.
+
+## Environment variables
+
+Generate your credentials and project id in Google Cloud Platform. Read through the [documentation](https://cloud.google.com/iam/docs/creating-managing-service-accounts) for setting a service account.
+
+After you acquired your credentials and project id, add it to your environment variables.
+
+```
+GCP_PRIVATE_KEY=[private_key]
+GCP_CLIENT_EMAIL=[client_email]
+GCP_PROJECT_ID=[project_id]
+```
 
 ## API
 
