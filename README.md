@@ -76,6 +76,10 @@ const Example = () => {
 
 Set the default language for the translation.
 
+### `skip`: boolean
+
+Skips the request if true.
+
 ## API
 
 ### `translate`: func

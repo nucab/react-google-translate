@@ -2,11 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { translateText } from './util'
 
 type Props = {
-  text: string | Array<string>
-  options: {
-    language: string
-    skip: boolean
-  }
+  language: string
+  skip?: boolean
 }
 
 type Result = {
@@ -21,11 +18,8 @@ type LazyTranslateProps = [
   }
 ]
 
-export const useLazyTranslate = (
-  props: Pick<Props, 'options'>
-): LazyTranslateProps => {
-  const { options } = props
-  const { language, skip } = options
+export const useLazyTranslate = (props: Props): LazyTranslateProps => {
+  const { language, skip } = props
   const [loading, setLoading] = useState(true)
   const [called, setCalled] = useState(false)
   const [data, setData] = useState<string | string[]>([])
@@ -54,8 +48,10 @@ export const useLazyTranslate = (
   ]
 }
 
-export const useTranslate = (props: Props): Result => {
-  const { text } = props
+export const useTranslate = (
+  text: string | Array<string>,
+  props: Props
+): Result => {
   const [translate, { loading, data }] = useLazyTranslate(props)
   useEffect(() => {
     let mounted = true
