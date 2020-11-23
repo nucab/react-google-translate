@@ -3,7 +3,10 @@ import { translateText } from './util'
 
 type Props = {
   text: string | Array<string>
-  language: string
+  options: {
+    language: string
+    skip: boolean
+  }
 }
 
 type Result = {
@@ -12,33 +15,37 @@ type Result = {
 }
 
 type LazyTranslateProps = [
-  (param: string | Array<string>, target?: string) => Promise<void>,
+  (param: string | Array<string>, target?: string) => Promise<void> | null,
   Result & {
     called: boolean
   }
 ]
 
 export const useLazyTranslate = (
-  props: Pick<Props, 'language'>
+  props: Pick<Props, 'options'>
 ): LazyTranslateProps => {
-  const { language } = props
+  const { options } = props
+  const { language, skip } = options
   const [loading, setLoading] = useState(true)
   const [called, setCalled] = useState(false)
   const [data, setData] = useState<string | string[]>([])
 
   return [
-    useCallback(
-      (text: string | Array<string>, target?: string) =>
-        translateText(text, target || language)
-          .then((res) => {
-            setData(res)
-          })
-          .finally(() => {
-            setCalled(true)
-            setLoading(false)
-          }),
-      []
-    ),
+    useCallback((text: string | Array<string>, target?: string) => {
+      if (skip) {
+        setCalled(true)
+        setLoading(false)
+        return null
+      }
+      return translateText(text, target || language)
+        .then((res) => {
+          setData(res)
+        })
+        .finally(() => {
+          setCalled(true)
+          setLoading(false)
+        })
+    }, []),
     {
       called,
       loading,
