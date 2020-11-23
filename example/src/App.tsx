@@ -18,6 +18,8 @@ const App = () => {
   const [language, setLanguage] = useState('zh')
   const [languageOptions, setLanguageOptions] = useState<any>()
 
+  console.log(process.env)
+
   const [translate, { called, data, loading }] = useLazyTranslate({
     language
   })
