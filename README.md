@@ -4,6 +4,10 @@
 
 [![NPM](https://img.shields.io/npm/v/react-google-translate.svg)](https://www.npmjs.com/package/react-google-translate) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Demo
+
+See [demo](https://react-google-translate.vercel.app/)
+
 ## Install
 
 ```bash
