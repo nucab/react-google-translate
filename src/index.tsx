@@ -24,11 +24,16 @@ export const useLazyTranslate = (props: Props): LazyTranslateProps => {
   const [called, setCalled] = useState(false)
   const [data, setData] = useState<string | string[]>([])
 
+  useEffect(() => {
+    if (skip) {
+      setCalled(true)
+      setLoading(false)
+    }
+  }, [])
+
   return [
     useCallback((text: string | Array<string>, target?: string) => {
       if (skip) {
-        setCalled(true)
-        setLoading(false)
         return null
       }
       return translateText(text, target || language)
