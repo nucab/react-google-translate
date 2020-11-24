@@ -32,19 +32,22 @@ export const useLazyTranslate = (props: Props): LazyTranslateProps => {
   }, [])
 
   return [
-    useCallback((text: string | Array<string>, target?: string) => {
-      if (skip) {
-        return null
-      }
-      return translateText(text, target || language)
-        .then((res) => {
-          setData(res)
-        })
-        .finally(() => {
-          setCalled(true)
-          setLoading(false)
-        })
-    }, []),
+    useCallback(
+      (text: string | Array<string>, target?: string) => {
+        if (skip) {
+          return null
+        }
+        return translateText(text, target || language)
+          .then((res) => {
+            setData(res)
+          })
+          .finally(() => {
+            setCalled(true)
+            setLoading(false)
+          })
+      },
+      [language]
+    ),
     {
       called,
       loading,
